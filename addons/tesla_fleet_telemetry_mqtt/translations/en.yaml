@@ -1,0 +1,37 @@
+configuration:
+  listen_host:
+    name: Listen Host
+    description: Network interface to listen on (0.0.0.0 for all interfaces)
+  listen_port:
+    name: Listen Port
+    description: Port for Tesla Fleet Telemetry (Tesla requires 443 by default)
+  tls_cert_path:
+    name: TLS Certificate Path
+    description: Absolute path to TLS certificate file (e.g., /ssl/fullchain.pem)
+  tls_key_path:
+    name: TLS Private Key Path
+    description: Absolute path to TLS private key file (e.g., /ssl/privkey.pem)
+  mqtt_broker:
+    name: MQTT Broker
+    description: MQTT broker address (use core-mosquitto:1883 for Home Assistant Mosquitto add-on)
+  mqtt_client_id:
+    name: MQTT Client ID
+    description: Unique identifier for this MQTT client
+  mqtt_username:
+    name: MQTT Username
+    description: Username for MQTT authentication (leave empty if not required)
+  mqtt_password:
+    name: MQTT Password
+    description: Password for MQTT authentication (leave empty if not required)
+  mqtt_topic_base:
+    name: MQTT Topic Base
+    description: Base topic for all telemetry messages (e.g., telemetry)
+  mqtt_qos:
+    name: MQTT QoS
+    description: Quality of Service level for MQTT messages (0=at most once, 1=at least once, 2=exactly once)
+  mqtt_retained:
+    name: MQTT Retained
+    description: Whether MQTT messages should be retained by the broker
+  extra_fleet_config:
+    name: Extra Fleet Config
+    description: Additional fleet-telemetry configuration options (JSON object, merged with base config)

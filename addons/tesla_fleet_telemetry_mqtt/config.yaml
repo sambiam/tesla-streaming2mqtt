@@ -1,0 +1,46 @@
+name: Tesla Fleet Telemetry MQTT
+version: "1.0.0"
+slug: tesla_fleet_telemetry_mqtt
+description: Tesla Fleet Telemetry server with MQTT integration for Home Assistant
+url: https://github.com/teslamotors/fleet-telemetry
+arch:
+  - amd64
+  - aarch64
+  - armv7
+startup: services
+boot: auto
+init: false
+ports:
+  443/tcp: 443
+ports_description:
+  443/tcp: Fleet Telemetry HTTPS endpoint (TLS required by Tesla)
+map:
+  - ssl:ro
+  - share:rw
+options:
+  listen_host: "0.0.0.0"
+  listen_port: 443
+  tls_cert_path: "/ssl/fullchain.pem"
+  tls_key_path: "/ssl/privkey.pem"
+  mqtt_broker: "core-mosquitto:1883"
+  mqtt_client_id: "fleet-telemetry-ha"
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_topic_base: "telemetry"
+  mqtt_qos: 0
+  mqtt_retained: false
+  extra_fleet_config: {}
+schema:
+  listen_host: str
+  listen_port: port
+  tls_cert_path: str
+  tls_key_path: str
+  mqtt_broker: str
+  mqtt_client_id: str
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_topic_base: str
+  mqtt_qos: int(0,2)
+  mqtt_retained: bool
+  extra_fleet_config: dict?
+image: ghcr.io/homeassistant/{arch}-addon-tesla-fleet-telemetry-mqtt

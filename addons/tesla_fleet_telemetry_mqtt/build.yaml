@@ -1,0 +1,11 @@
+build_from:
+  amd64: ghcr.io/home-assistant/amd64-base:3.19
+  aarch64: ghcr.io/home-assistant/aarch64-base:3.19
+  armv7: ghcr.io/home-assistant/armv7-base:3.19
+labels:
+  org.opencontainers.image.title: "Tesla Fleet Telemetry MQTT"
+  org.opencontainers.image.description: "Tesla Fleet Telemetry server with MQTT integration"
+  org.opencontainers.image.source: "https://github.com/teslamotors/fleet-telemetry"
+  org.opencontainers.image.licenses: "Apache-2.0"
+args:
+  FLEET_TELEMETRY_VERSION: "v1.7.3"
