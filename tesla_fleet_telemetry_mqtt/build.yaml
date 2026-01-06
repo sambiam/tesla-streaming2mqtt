@@ -8,4 +8,4 @@ labels:
   org.opencontainers.image.source: "https://github.com/teslamotors/fleet-telemetry"
   org.opencontainers.image.licenses: "Apache-2.0"
 args:
-  FLEET_TELEMETRY_VERSION: "v1.7.3"
+  FLEET_TELEMETRY_VERSION: "v0.8.0"
