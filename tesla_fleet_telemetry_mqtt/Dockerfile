@@ -2,7 +2,7 @@ ARG BUILD_FROM
 ARG FLEET_TELEMETRY_VERSION
 
 # Build stage for fleet-telemetry
-FROM golang:1.22-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 # Install build dependencies
 RUN apk add --no-cache \
