@@ -43,4 +43,3 @@ schema:
   mqtt_qos: int(0,2)
   mqtt_retained: bool
   extra_fleet_config: dict?
-image: ghcr.io/homeassistant/{arch}-addon-tesla-fleet-telemetry-mqtt
