@@ -94,18 +94,25 @@ EOF
 
 # Merge extra_fleet_config if provided
 if bashio::config.has_value 'extra_fleet_config'; then
-    bashio::log.info "Merging extra_fleet_config..."
-
-    # Read extra config
     EXTRA_CONFIG=$(bashio::config 'extra_fleet_config')
 
-    # Merge configurations using jq
-    MERGED_CONFIG=$(jq -s '.[0] * .[1]' "$CONFIG_FILE" <(echo "$EXTRA_CONFIG"))
+    # Only merge if not empty
+    if [ -n "$EXTRA_CONFIG" ]; then
+        bashio::log.info "Merging extra_fleet_config..."
 
-    # Write merged config back
-    echo "$MERGED_CONFIG" > "$CONFIG_FILE"
+        # Validate JSON format
+        if ! echo "$EXTRA_CONFIG" | jq empty 2>/dev/null; then
+            bashio::log.warning "extra_fleet_config is not valid JSON, skipping merge"
+        else
+            # Merge configurations using jq
+            MERGED_CONFIG=$(jq -s '.[0] * .[1]' "$CONFIG_FILE" <(echo "$EXTRA_CONFIG"))
 
-    bashio::log.info "Extra configuration merged successfully"
+            # Write merged config back
+            echo "$MERGED_CONFIG" > "$CONFIG_FILE"
+
+            bashio::log.info "Extra configuration merged successfully"
+        fi
+    fi
 fi
 
 # Validate the generated JSON

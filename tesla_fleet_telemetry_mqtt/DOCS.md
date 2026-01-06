@@ -87,7 +87,7 @@ mqtt_password: ""
 mqtt_topic_base: "telemetry"
 mqtt_qos: 0
 mqtt_retained: false
-extra_fleet_config: {}
+extra_fleet_config: ""
 ```
 
 ### Configuration Options
@@ -105,7 +105,7 @@ extra_fleet_config: {}
 | `mqtt_topic_base` | Yes | `telemetry` | Base topic for all messages |
 | `mqtt_qos` | Yes | `0` | MQTT Quality of Service (0, 1, or 2) |
 | `mqtt_retained` | Yes | `false` | Whether MQTT messages should be retained |
-| `extra_fleet_config` | No | `{}` | Additional fleet-telemetry config (see below) |
+| `extra_fleet_config` | No | `""` | Additional fleet-telemetry config as JSON string (see below) |
 
 ### MQTT Authentication
 
@@ -118,16 +118,23 @@ mqtt_password: "your_mqtt_password"
 
 ### Advanced Configuration
 
-Use `extra_fleet_config` to add or override any fleet-telemetry configuration fields:
+Use `extra_fleet_config` to add or override any fleet-telemetry configuration fields. Provide the configuration as a JSON string:
 
 ```yaml
-extra_fleet_config:
-  log_level: "debug"
-  reliable_ack_sources:
-    - alerts
-    - errors
-  monitoring:
-    prometheus_metrics_port: 9090
+extra_fleet_config: '{"log_level": "debug", "reliable_ack_sources": ["alerts", "errors"], "monitoring": {"prometheus_metrics_port": 9090}}'
+```
+
+Or for better readability in YAML, use the multiline string format:
+
+```yaml
+extra_fleet_config: >-
+  {
+    "log_level": "debug",
+    "reliable_ack_sources": ["alerts", "errors"],
+    "monitoring": {
+      "prometheus_metrics_port": 9090
+    }
+  }
 ```
 
 These fields will be deep-merged into the generated configuration.

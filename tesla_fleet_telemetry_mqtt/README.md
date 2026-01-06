@@ -86,7 +86,7 @@ For detailed setup instructions, configuration options, and troubleshooting:
 | `mqtt_topic_base` | `telemetry` | Base topic for messages |
 | `mqtt_qos` | `0` | MQTT Quality of Service |
 | `mqtt_retained` | `false` | Retain MQTT messages |
-| `extra_fleet_config` | `{}` | Additional config options |
+| `extra_fleet_config` | `""` | Additional config (JSON string) |
 
 ## Troubleshooting
 

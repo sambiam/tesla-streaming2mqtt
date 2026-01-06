@@ -29,7 +29,7 @@ options:
   mqtt_topic_base: "telemetry"
   mqtt_qos: 0
   mqtt_retained: false
-  extra_fleet_config: {}
+  extra_fleet_config: ""
 schema:
   listen_host: str
   listen_port: port
@@ -42,4 +42,4 @@ schema:
   mqtt_topic_base: str
   mqtt_qos: int(0,2)
   mqtt_retained: bool
-  extra_fleet_config: dict?
+  extra_fleet_config: str?

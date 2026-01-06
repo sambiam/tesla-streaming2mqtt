@@ -34,4 +34,4 @@ configuration:
     description: Whether MQTT messages should be retained by the broker
   extra_fleet_config:
     name: Extra Fleet Config
-    description: Additional fleet-telemetry configuration options (JSON object, merged with base config)
+    description: Additional fleet-telemetry configuration options as JSON string (e.g., '{"log_level":"debug"}'), merged with base config
