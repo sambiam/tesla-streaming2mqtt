@@ -9,3 +9,4 @@ labels:
   org.opencontainers.image.licenses: "Apache-2.0"
 args:
   FLEET_TELEMETRY_VERSION: "v0.8.0"
+timeout: 300
