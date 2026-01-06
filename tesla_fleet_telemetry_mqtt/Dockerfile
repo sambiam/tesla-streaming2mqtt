@@ -19,12 +19,15 @@ WORKDIR /build
 RUN git clone --depth 1 --branch ${FLEET_TELEMETRY_VERSION} \
     https://github.com/teslamotors/fleet-telemetry.git .
 
+# Verify repository structure
+RUN ls -la /build/cmd/
+
 # Build the binary
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${TARGETARCH} \
     go build -a -installsuffix cgo \
     -ldflags="-w -s" \
     -o fleet-telemetry \
-    ./cmd/fleet-telemetry
+    ./cmd
 
 # Runtime stage
 FROM $BUILD_FROM
