@@ -15,16 +15,19 @@ ARG TARGETARCH
 
 WORKDIR /build
 
-# Clone and build fleet-telemetry
+# Clone fleet-telemetry
 RUN git clone --depth 1 --branch ${FLEET_TELEMETRY_VERSION} \
     https://github.com/teslamotors/fleet-telemetry.git .
+
+# Download dependencies first (better layer caching)
+RUN go mod download
 
 # Verify repository structure
 RUN ls -la /build/cmd/
 
-# Build the binary
+# Build the binary with optimizations
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${TARGETARCH} \
-    go build -a -installsuffix cgo \
+    go build -v -a -installsuffix cgo \
     -ldflags="-w -s" \
     -o fleet-telemetry \
     ./cmd
